@@ -31,3 +31,16 @@ body {
     text-wrap: balance;
   }
 }
+
+
+.properties-list {
+  .properties-list__image{
+    height: 200px;
+    width: 300px;
+    object-fit: contain;
+    img {
+      height: 100%;
+      width: 100%;
+    }
+  }
+}
