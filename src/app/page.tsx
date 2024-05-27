@@ -24,17 +24,20 @@ async function getData() {
 }
 
 function GetList() {
-  const markup: ReactNode = properties.map(prop => {
-    return <li key={prop.BuildingName}>
+  const props: Array<{name: string, address:string, imagePath:string}> = properties.map(prop => ({name:prop.BuildingName, address: prop.Address, imagePath: prop.MainImage?.ImagePath!}));
+  props.length = 20;
+  const markup: ReactNode = props.map(prop => {
+    return <li key={prop.name}>
       <div className="properties-list__image">
-        <img src={prop.MainImage?.ImagePath!} alt="" />
+        <img src={prop.imagePath} alt="" />
       </div>
       <div className="content">
-        <div>{prop.BuildingName}</div>
-        <div>{prop.Address}</div>
+        <div>{prop.name}</div>
+        <div>{prop.address}</div>
       </div>
     </li>
   }
+  
   )
   return <ul className="properties-list">{markup}</ul>;
 }
