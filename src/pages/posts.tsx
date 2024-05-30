@@ -10,7 +10,7 @@ export default function Posts(props:Props) {
     const handleInputChange = (e: any) => {
         const searchTerm = e.target.value;
         setSearchItem(searchTerm);
-        
+
         console.log(posts.length);
         const filteredItems = posts.filter((post) =>
             post.title.toLowerCase().includes(searchTerm.toLowerCase())
@@ -54,9 +54,7 @@ export async function getStaticProps() {
   }
 
   function GetList(listProps: ListProps) {
-    const posts = listProps.posts;
-    posts.length = 20;
-    const markup: ReactNode = posts.map(prop => {
+    const markup: ReactNode = listProps.posts.map(prop => {
       return <li key={prop.id}>
         <div className="properties-list__image">
           <img src={prop.url} alt="" />
