@@ -4,7 +4,7 @@ import "../app/globals.css"
 export default function Posts(props:Props) {
     const posts = props.posts;
 
-    const [searchItem, setSearchItem] = useState('')
+    const [searchItem, setSearchItem] = useState('');
     const [filteredPosts, setFilteredPosts] = useState(posts);
 
     const handleInputChange = (e: any) => {
