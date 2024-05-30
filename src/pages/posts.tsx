@@ -54,7 +54,9 @@ export async function getStaticProps() {
   }
 
   function GetList(listProps: ListProps) {
-    const markup: ReactNode = listProps.posts.map(prop => {
+    const copyPosts = [...listProps.posts];
+    copyPosts.length = 20;
+    const markup: ReactNode = copyPosts.map(prop => {
       return <li key={prop.id}>
         <div className="properties-list__image">
           <img src={prop.url} alt="" />
