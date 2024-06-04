@@ -3,12 +3,16 @@ import { useState } from 'react'
 import { Property } from "@/app/propety";
 import "../app/globals.css"
 import buildings from '../../public/GetProperties.json';
+import { MapProvider } from "@/app/components/map-provider";
+import { MapComponent } from "@/app/components/map";
 
 export default function Properties(props: Props) {
     const posts = props.buildings;
+    const markers: Array<google.maps.LatLngLiteral>  = props.buildings.map(building => ({lat: building.Latitude, lng: building.Longitude}));
 
     const [searchItem, setSearchItem] = useState('');
     const [filteredPosts, setFilteredPosts] = useState(posts);
+    const [filteredMarkers, setMarkers] = useState(markers);
 
     const handleInputChange = (e: any) => {
         const searchTerm = e.target.value;
@@ -19,7 +23,8 @@ export default function Properties(props: Props) {
             post.BuildingName.toLowerCase().includes(searchTerm.toLowerCase())
         );
 
-        setFilteredPosts(filteredItems)
+        setFilteredPosts(filteredItems);
+        setMarkers(filteredItems.map(building => ({lat: building.Latitude, lng: building.Longitude})));
     }
 
     return (
@@ -27,6 +32,9 @@ export default function Properties(props: Props) {
             <div className="grid grid-cols-12">
                 <div className="col-span-8 map">
                     <input type="text" placeholder="Search" value={searchItem} onChange={handleInputChange} />
+                    <MapProvider>
+                        <MapComponent markers={filteredMarkers} ></MapComponent>
+                    </MapProvider>
                 </div>
                 <div className="col-span-4 list">
                     <GetList properties={filteredPosts} />
