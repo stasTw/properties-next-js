@@ -9,8 +9,7 @@ import { Marker } from "@react-google-maps/api";
 //Map's styling
 const defaultMapContainerStyle = {
     width: '100%',
-    height: '100vh',
-    borderRadius: '15px 0px 0px 15px',
+    height: '100%',
 };
 
 //K2's coordinates
@@ -34,7 +33,7 @@ const MapComponent = ({ markers }: { markers: Array<google.maps.LatLngLiteral> }
         bounds.extend(m);
     })
     return (
-        <div className="w-full">
+        <div style={{width:"100%", height:"600px"}}>
             <GoogleMap
                 onLoad={(map) => map.fitBounds(bounds)}
                 mapContainerStyle={defaultMapContainerStyle}
@@ -43,8 +42,8 @@ const MapComponent = ({ markers }: { markers: Array<google.maps.LatLngLiteral> }
                 options={defaultMapOptions}
             >
                 {
-                    markers.map(marker => {
-                        return <Marker key={marker.lat + "" + marker.lng} position={{ lat: marker.lat, lng: marker.lng }} />
+                    markers.map((marker, index) => {
+                        return <Marker key={marker.lat + `${index}` + marker.lng} position={{ lat: marker.lat, lng: marker.lng }} />
                     })
                 }
             </GoogleMap>
