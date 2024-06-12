@@ -133,7 +133,7 @@ function SearchByConfig(props: Property[], config: SearchConfig, searchTerm: str
 
 function GetList(listProps: ListProps) {
     const copyPosts = [...listProps.properties];
-    copyPosts.length = 20;
+    copyPosts.length = 15;
     const markup: ReactNode = copyPosts.map(prop => {
         return <li className="card" key={prop.PropertyId + prop.BuildingName}>
             <Image fill={true} src={prop.MainImage ? prop.MainImage.ImagePath : "https://t4.ftcdn.net/jpg/04/70/29/97/360_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpg"} alt="" className="card__img" />
