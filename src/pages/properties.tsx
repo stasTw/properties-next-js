@@ -23,8 +23,7 @@ export default function Properties(props: Props) {
         const searchTerm = e.target.value;
         setSearchItem(searchTerm);
 
-        const filteredItems = searchTerm === "" ? posts : SearchByConfig(posts, searchConfig, searchItem);
-        console.log(filteredItems.length);
+        const filteredItems = searchTerm === "" ? posts : SearchByConfig(posts, searchConfig, searchTerm);
 
         setFilteredPosts(filteredItems);
         setMarkers(filteredItems.map(building => ({ lat: building.Latitude, lng: building.Longitude })));
@@ -44,9 +43,8 @@ export default function Properties(props: Props) {
             setSearchConfig({ ...searchConfig, byState: target.checked });
             nextConfigState = { ...searchConfig, byState: target.checked };
         }
-        console.log(nextConfigState);
+
         const filteredItems = searchItem === "" ? posts : SearchByConfig(posts, nextConfigState, searchItem);
-        console.log(filteredItems.length);
 
         setFilteredPosts(filteredItems);
         setMarkers(filteredItems.map(building => ({ lat: building.Latitude, lng: building.Longitude })));
